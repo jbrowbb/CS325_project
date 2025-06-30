@@ -1,1 +1,3 @@
 # Indeed Resume and Job Summarizer
+
+This program processes PDF resumes using AI to identify job titles and locations. These are then used to query Indeed.com, retrieving the top 5-10 job postings. The program subsequently scrapes the text from these postings and leverages AI again to summarize the job description, salary information, and required skills. This tool is designed to streamline the job search process, providing concise summaries of relevant opportunities.
