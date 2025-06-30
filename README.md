@@ -12,3 +12,25 @@ This program streamlines job searching by leveraging the power of Gemini's AI. I
 The program currently supports downloading content from the following job listing websites:
 
 * Indeed.com
+
+# Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/jbrowbb/CS325_project.git
+```
+
+2. Navigate to the project directory
+```bash
+cd 'Indeed Project'
+```
+
+3. Initialize the conda environment with the provided `requirements.yaml` file
+```bash
+conda env create -f requirements.yaml
+```
+
+4. Activate the conda environment
+```bash
+conda activate job_matching_env
+```
