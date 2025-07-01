@@ -1,68 +1,41 @@
+# run.py
+# Main script to read a PDF and save its content to a text file.
+# SOLID Principle Focus: This script acts as a high-level orchestrator,
+# depending on the concrete implementations of PDFExtractor and FileHandler.
+# While not strictly demonstrating DIP via explicit interfaces here (to simplify the single-file concept),
+# it still separates concerns across modules.
+
 import os
-from pypdf import PdfReader
+from module_1.pdf_extractor import PDFExtractor # Import the PDF extraction logic
+from module_2.file_handler import FileHandler   # Import the file I/O logic
 
-def extract_specific_pdf_to_text(pdf_folder_name, pdf_filename, text_filename):
-    """
-    Reads a specific PDF file from a specified subfolder, extracts text,
-    and saves the text to a .txt file in the same subfolder.
+if __name__ == "__main__":
+    # Get the directory where the current script (run.py) is located
+    current_script_dir = os.path.dirname(os.path.abspath(__file__))
 
-    Args:
-        pdf_folder_name (str): The name of the subfolder containing the PDF.
-                                (e.g., "Resume")
-        pdf_filename (str): The name of the PDF file to read.
-                            (e.g., "Resume.pdf")
-        text_filename (str): The name of the text file to write to.
-                             (e.g., "resume.txt")
-    """
-    try:
-        # Get the directory where the current script (test.py) is located
-        current_script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Define the path to the 'Resume' folder, relative to run.py
+    resume_folder_path = os.path.join(current_script_dir, "Resume")
 
-        # Construct the full path to the folder containing the PDF and text file
-        target_folder_path = os.path.join(current_script_dir, pdf_folder_name)
+    # Define the full paths for the input PDF and output TXT files
+    pdf_input_path = os.path.join(resume_folder_path, "Resume.pdf")
+    txt_output_path = os.path.join(resume_folder_path, "resume.txt")
 
-        # Construct the full path to the PDF file
-        pdf_full_path = os.path.join(target_folder_path, pdf_filename)
+    print(f"Attempting to read PDF from: {pdf_input_path}")
+    print(f"Attempting to write text to: {txt_output_path}")
 
-        # Construct the full path to the output text file
-        text_full_path = os.path.join(target_folder_path, text_filename)
+    # Create instances of our worker classes
+    pdf_extractor = PDFExtractor()
+    file_handler = FileHandler()
 
-        print(f"Attempting to read PDF from: {pdf_full_path}")
-        print(f"Attempting to write text to: {text_full_path}")
+    # Step 1: Extract text from the PDF
+    extracted_text = pdf_extractor.extract_text_from_pdf(pdf_input_path)
 
-        # Check if the PDF file exists
-        if not os.path.exists(pdf_full_path):
-            print(f"Error: PDF file not found at '{pdf_full_path}'.")
-            return
-
-        # Check if the target folder exists
-        if not os.path.isdir(target_folder_path):
-            print(f"Error: Target folder '{target_folder_path}' not found or is not a directory.")
-            return
-
-        # Read the PDF
-        reader = PdfReader(pdf_full_path)
-        extracted_text = ""
-        for page in reader.pages:
-            extracted_text += page.extract_text() + "\n" # Add newline for readability between pages
-
-        # Write the extracted text to the .txt file
-        with open(text_full_path, "w", encoding="utf-8") as text_file:
-            text_file.write(extracted_text)
-
-        print(f"Successfully extracted text from '{pdf_filename}' to '{text_filename}'.")
-
-    except FileNotFoundError:
-        print(f"Error: A file or directory was not found. Please check paths.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-# --- How to use the function for your specific case ---
-
-# Define the relative path to the folder and the file names
-pdf_folder = "Resume"
-pdf_file = "Resume.pdf"
-text_file = "resume.txt"
-
-# Call the function
-extract_specific_pdf_to_text(pdf_folder, pdf_file, text_file)
+    if extracted_text.startswith("Error:"):
+        print(f"Failed to extract text: {extracted_text}")
+    else:
+        # Step 2: Write the extracted text to the output file
+        success = file_handler.write_text_to_file(txt_output_path, extracted_text)
+        if success:
+            print(f"Successfully extracted text from 'Resume.pdf' and saved to '{txt_output_path}'.")
+        else:
+            print(f"Failed to save extracted text to '{txt_output_path}'. Check console for errors.")
