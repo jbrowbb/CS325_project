@@ -43,3 +43,12 @@ conda activate job_matching_env
 3. For using Gemini's AI system, you need to create the API key/token. Create your account using [Google AI Website](https://ai.google.dev/) first.
 
 4. Then create the personal unique API key [API key/token](https://aistudio.googl.com/app/apikey).
+
+a. The main API Key page.
+    ![step1](images/step1.png)
+
+b. Click `Create API key`
+    ![step2](images/step2.png)
+
+c. You will see you API key
+    ![step3](images/step3.png)
