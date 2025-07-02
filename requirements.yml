@@ -1,4 +1,4 @@
-name: project3
+name: job_matching_env
 channels:
   - defaults
 dependencies:
