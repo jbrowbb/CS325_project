@@ -44,11 +44,29 @@ conda activate job_matching_env
 
 4. Then create the personal unique API key [API key/token](https://aistudio.googl.com/app/apikey).
 
-a. The main API Key page.
-    ![step1](images/step1.png)
+    a. The main API Key page.
+        ![step1](images/step1.png)
 
-b. Click `Create API key`
-    ![step2](images/step2.png)
+    b. Click `Create API key`
+        ![step2](images/step2.png)
 
-c. You will see you API key
-    ![step3](images/step3.png)
+    c. You will see you API key
+        ![step3](images/step3.png)
+
+
+5. Once the API key is generatd, you need to securly store it. Please follow these instructions to store your API key
+
+    a. Open a plain text editor, e.g. Notepad
+    
+    b. Define a variable named `API_KEY`, and assign the API key to it.
+    ```ruby
+    API_KEY = your_api_key
+    ```
+
+    c. Save the file with the extention `.env` inside the main folder.
+
+
+6. `run.py` and other useful files are in the same directory.
+    ```ruby
+    python3 run.py
+    ```
