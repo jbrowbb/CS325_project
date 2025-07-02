@@ -40,11 +40,6 @@ conda activate job_matching_env
 
 2. Create a folder called Jobs. Inside that folder create two folders and a text file. The folders should be named Original (holds the original content from Indeed) and Summarized (holds the summarized version of the jobs). The text file's name is urls.txt and contails the Indeed URLs of the job listings. Each URL needs to be on a separate line.
 
-3. Makesure that `run.py` and Resume and Jobs folders are in the same location. Run the `run.py`.
-```ruby
-python3 run.py
-```
+3. For using Gemini's AI system, you need to create the API key/token. Create your account using [Google AI Website](https://ai.google.dev/) first.
 
-4. The script will grab the content from your pdf file, pastes the content into a text file to be summarized.
-
-5. Second part of the script will download the URLs content and same them to text files to be summarized.
+4. Then create the personal unique API key [API key/token](https://aistudio.googl.com/app/apikey).
