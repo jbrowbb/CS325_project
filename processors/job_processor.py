@@ -9,7 +9,7 @@ from core.data_cleaner import clean_filename
 from core.file_manager import ensure_directory_exists, save_text_file, load_urls_from_file, save_json_file
 
 # --- Configuration ---
-JOB_FOLDER = "Job" # Define here
+JOB_FOLDER = "Jobs" # Define here
 JOB_URLS_FILE = os.path.join(JOB_FOLDER, "urls.txt")
 JOB_GENERAL_FOLDER = os.path.join(JOB_FOLDER, "General")
 JOB_SUMMARIZED_FOLDER = os.path.join(JOB_FOLDER, "Summarized")
